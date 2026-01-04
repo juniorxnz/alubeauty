@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alu Beauty - Estética & Bem-Estar</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="components/navbar.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="components/Depoimento-card.js"></script>
+    <script src="components/service-card.js"></script>
+</head>
+<body class="font-poppins bg-rose-50 text-rose-900">
+    <custom-navbar></custom-navbar>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center bg-gradient-to-b from-rose-100 to-white overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-0 left-0 w-full h-full bg-[url('https://static.photos/cosmetic/1200x630/1')] bg-cover bg-center"></div>
+        </div>
+        <div class="relative z-10 text-center px-4 max-w-4xl">
+            <h1 class="font-playfair text-5xl md:text-7xl font-bold mb-6 text-rose-800">Sua beleza natural revelada</h1>
+            <p class="text-xl md:text-2xl mb-8 text-rose-700">Cuidados especializados para realçar sua autoestima</p>
+            <a href="#agendamento" class="bg-rose-500 hover:bg-rose-600 text-white px-8 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 shadow-lg shadow-rose-200">Agende seu horário</a>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i data-feather="chevron-down" class="text-rose-400"></i>
+        </div>
+    </section>
+
+    <!-- Seção de SERVICOS -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <span class="text-secondary font-medium uppercase tracking-widest">Serviços</span>
+          <h2 class="text-4xl font-serif font-bold text-gray-800 mt-2">Tratamentos Realizados</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Serviço 1 -->
+          <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100">
+            <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+              <i data-feather="feather" class="text-primary w-8 h-8"></i>
+            </div>
+            <h3 class="text-xl font-serif font-semibold text-gray-800 mb-3">Design de Sobrancelhas</h3>
+            <p class="text-gray-600 mb-4">Modelagem perfeita para valorizar seu olhar com técnicas avançadas.</p>
+            <div class="flex justify-between items-center">
+              <a href="#agendamento" class="text-primary hover:text-primary/80 font-medium flex items-center">
+                Agendar <i data-feather="chevron-right" class="ml-1 w-5 h-5"></i>
+              </a>
+            </div>
+          </div>
+          
+          <!-- Serviço 2 -->
+          <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100">
+            <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+              <i data-feather="droplet" class="text-primary w-8 h-8"></i>
+            </div>
+            <h3 class="text-xl font-serif font-semibold text-gray-800 mb-3">Limpeza de Pele</h3>
+            <p class="text-gray-600 mb-4">Renovação celular com produtos premium para uma pele radiante.</p>
+            <div class="flex justify-between items-center">
+              <a href="#agendamento" class="text-primary hover:text-primary/80 font-medium flex items-center">
+                Agendar <i data-feather="chevron-right" class="ml-1 w-5 h-5"></i>
+              </a>
+            </div>
+          </div>
+          
+          <!-- Serviço 3 -->
+          <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100">
+            <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+              <i data-feather="wind" class="text-primary w-8 h-8"></i>
+            </div>
+            <h3 class="text-xl font-serif font-semibold text-gray-800 mb-3">Drenagem Linfática</h3>
+            <p class="text-gray-600 mb-4">Técnica especializada para reduzir medidas e melhorar circulação.</p>
+            <div class="flex justify-between items-center">
+              <a href="#agendamento" class="text-primary hover:text-primary/80 font-medium flex items-center">
+                Agendar <i data-feather="chevron-right" class="ml-1 w-5 h-5"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="text-center mt-12">
+          <a href="servicos.html" class="inline-flex items-center text-primary hover:text-primary/80 font-medium">
+            Ver todos os serviços
+            <i data-feather="chevron-right" class="ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Sobre -->
+    <section class="py-16 px-4 md:px-8 bg-rose-50">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                <img src="assets/img/al1cut.jpeg" alt="Fundadora Alu Beauty" class="rounded-lg shadow-xl w-full">
+            </div>
+            <div class="md:w-1/2">
+                <h2 class="font-playfair text-3xl md:text-4xl font-bold mb-6 text-rose-800">Sobre Mim</h2>
+                <p class="text-lg mb-4">Formada em Estética e Cosmetologia, com especialização em Terapias Corporais e Limpezas Faciais, busco unir o cuidado estético ao bem-estar e saúde dos pacientes.</p>
+            
+                <div class="flex items-center mb-4">
+                    <i data-feather="check-circle" class="text-rose-500 mr-2"></i>
+                    <span>Profissional Qualificada</span>
+                </div>
+                <div class="flex items-center mb-4">
+                    <i data-feather="check-circle" class="text-rose-500 mr-2"></i>
+                    <span>Produtos premium e técnicas inovadoras</span>
+                </div>
+                <div class="flex items-center">
+                    <i data-feather="check-circle" class="text-rose-500 mr-2"></i>
+                    <span>Atendimento personalizado e exclusivo</span>
+                </div>
+                <a href="sobre.html" class="inline-block mt-8 bg-rose-500 hover:bg-rose-600 text-white px-6 py-2 rounded-full font-medium transition-all duration-300">Conheça a minha história</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <span class="text-secondary font-medium uppercase tracking-widest">Depoimentos</span>
+          <h2 class="text-4xl font-serif font-bold text-gray-800 mt-2">O que nossas clientes dizem</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+          <!-- Depoimento 1 -->
+          <div class="bg-gray-50 p-8 rounded-xl">
+            <div class="flex items-center mb-4">
+              <div class="text-primary">
+                <i data-feather="star" fill="#f8c3cd" stroke="none" class="w-5 h-5"></i>
+                <i data-feather="star" fill="#f8c3cd" stroke="none" class="w-5 h-5"></i>
+                <i data-feather="star" fill="#f8c3cd" stroke="none" class="w-5 h-5"></i>
+                <i data-feather="star" fill="#f8c3cd" stroke="none" class="w-5 h-5"></i>
+                <i data-feather="star" fill="#f8c3cd" stroke="none" class="w-5 h-5"></i>
+              </div>
+            </div>
+            <p class="text-gray-600 italic mb-6">"A Alu Beauty transformou minha rotina de cuidados com a pele. Sinto-me renovada após cada sessão!"</p>
+            <div class="flex items-center">
+              <img src="http://static.photos/people/200x200/1" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
+              <div>
+                <h4 class="font-medium text-gray-800">Camila Silva</h4>
+                <span class="text-gray-500 text-sm">Cliente há 3 meses.</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Depoimento 2 -->
+          <div class="bg-gray-50 p-8 rounded-xl">
+            <div class="flex items-center mb-4">
+              <div class="text-primary">
+                <i data-feather="star" fill="#f8c3cd" stroke="none" class="w-5 h-5"></i> 
+                <i data-feather="star" fill="#f8c3cd" stroke="none" class="w-5 h-5"></i>
+                <i data-feather="star" fill="#f8c3cd" stroke="none" class="w-5 h-5"></i>
+                <i data-feather="star" fill="#f8c3cd" stroke="none" class="w-5 h-5"></i>
+                <i data-feather="star" fill="#f8c3cd" stroke="none" class="w-5 h-5"></i>
+              </div>
+            </div>
+            <p class="text-gray-600 italic mb-6">"Profissionais incríveis e resultados visíveis já na primeira sessão. Recomendo para todas minhas amigas!"</p>
+            <div class="flex items-center">
+              <img src="http://static.photos/people/200x200/2" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
+              <div>
+                <h4 class="font-medium text-gray-800">Ana Beatriz</h4>
+                <span class="text-gray-500 text-sm">Cliente há 1 ano</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Depoimento 3 -->
+          <div class="bg-gray-50 p-8 rounded-xl">
+            <div class="flex items-center mb-4">
+              <div class="text-primary">
+                <i data-feather="star" fill="#f8c3cd" stroke="none" class="w-5 h-5"></i>
+                <i data-feather="star" fill="#f8c3cd" stroke="none" class="w-5 h-5"></i>
+                <i data-feather="star" fill="#f8c3cd" stroke="none" class="w-5 h-5"></i>
+                <i data-feather="star" fill="#f8c3cd" stroke="none" class="w-5 h-5"></i>
+                <i data-feather="star" fill="#f8c3cd" stroke="none" class="w-5 h-5"></i>
+              </div>
+            </div>
+            <p class="text-gray-600 italic mb-6">"O ambiente é tão relaxante que já considero minhas visitas à Alu Beauty como meu momento de autocuidado."</p>
+            <div class="flex items-center">
+              <img src="http://static.photos/people/200x200/3" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
+              <div>
+                <h4 class="font-medium text-gray-800">Juliana Santos</h4>
+                <span class="text-gray-500 text-sm">Cliente há 6 meses</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção de chamada para ação (agendamento e contato do wpp) -->
+    <section id="agendamento" class="py-16 px-4 md:px-8 bg-gradient-to-r from-rose-400 to-rose-300 text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="font-playfair text-3xl md:text-4xl font-bold mb-6">Pronta para sua transformação?</h2>
+            <p class="text-xl mb-8">Agende agora mesmo seu horário e descubra os melhores tratamentos estéticos da cidade.</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="agendamento.html" class="bg-white text-rose-500 hover:bg-rose-50 px-8 py-3 rounded-full font-medium transition-all duration-300">Agendar Consulta</a>
+                <a href="https://wa.me/5511999999999" class="bg-green-500 hover:bg-green-600 px-8 py-3 rounded-full font-medium transition-all duration-300 flex items-center justify-center gap-2">
+                    <i data-feather="message-circle"></i> WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <custom-footer></custom-footer>
+
+    <script>
+        feather.replace();
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fadeIn');
+                }
+            });
+        }, {threshold: 0.1});
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+
+</body>
+</html>

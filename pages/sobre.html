@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre | AluBeauty</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF85A2',
+                        secondary: '#A78BFA',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <custom-navbar></custom-navbar>
+    
+    <main class="max-w-6xl mx-auto px-4 py-12">
+        <section class="flex flex-col lg:flex-row gap-12 items-center mb-16">
+            <div class="lg:w-1/2">
+                <img src="img/al2.jpeg" alt="Ana Luisa" class="rounded-lg shadow-xl w-full h-auto object-cover">
+            </div>
+            <div class="lg:w-1/2">
+                <h1 class="text-4xl font-bold text-primary mb-6">Ana Luisa</h1>
+                <p class="text-lg text-gray-700 mb-6">
+                    Olá! Sou Ana Luisa, fundadora da AluBeauty. Minha paixão pela estética começou cedo, quando percebi o poder transformador que os cuidados com a pele podem ter na autoestima e bem-estar das pessoas.
+                </p>
+                <div class="flex items-center gap-2 mb-4">
+                    <i data-feather="award" class="text-secondary"></i>
+                    <span class="font-medium">Formada em Estética e Cosmetologia</span>
+                </div>
+                <div class="flex items-center gap-2 mb-4">
+                    <i data-feather="heart" class="text-secondary"></i>
+                    <span class="font-medium">Atualização constante em técnicas e tendências do mercado estético</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i data-feather="star" class="text-secondary"></i>
+                    <span class="font-medium">Especializada em tratamentos faciais personalizados</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-primary mb-8 text-center">Minha Jornada</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                        <i data-feather="book" class="text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Formação</h3>
+                    <p class="text-gray-600">Graduada em Estética e Cosmetologia pela Instituição Unicesumar, com especializações em dermatofuncional e cosmetologia avançada.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                        <i data-feather="briefcase" class="text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Experiência</h3>
+                    <p class="text-gray-600">Atuei em clínicas de referência antes de fundar a AluBeauty, adquirindo conhecimento prático em protocolos de tratamento.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                        <i data-feather="target" class="text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Missão</h3>
+                    <p class="text-gray-600">Oferecer tratamentos personalizados que valorizem a beleza natural de cada cliente, promovendo autoestima e bem-estar.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-gradient-to-r from-primary to-secondary p-8 rounded-lg text-white mb-16">
+            <h2 class="text-3xl font-bold mb-6">Por que escolher a AluBeauty?</h2>
+            <ul class="space-y-4">
+                <li class="flex items-start gap-3">
+                    <i data-feather="check-circle" class="flex-shrink-0"></i>
+                    <span>Protocolos personalizados baseados em estudos científicos</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <i data-feather="check-circle" class="flex-shrink-0"></i>
+                    <span>Produtos de alta performance e qualidade</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <i data-feather="check-circle" class="flex-shrink-0"></i>
+                    <span>Ambiente acolhedor e exclusivo</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <i data-feather="check-circle" class="flex-shrink-0"></i>
+                    <span>Compromisso com resultados visíveis e duradouros</span>
+                </li>
+            </ul>
+        </section>
+
+        <section class="text-center">
+            <h2 class="text-3xl font-bold text-primary mb-6">Meu Compromisso</h2>
+            <p class="text-lg text-gray-700 max-w-3xl mx-auto">
+                "Acredito que cada pessoa é única e merece um tratamento que respeite suas particularidades. Minha abordagem combina técnica, ciência e sensibilidade para oferecer a melhor experiência em estética."
+            </p>
+            <div class="mt-8">
+                <a href="/contato" class="bg-primary hover:bg-primary-600 text-white font-medium py-3 px-8 rounded-full inline-flex items-center gap-2 transition-colors">
+                    Agende sua avaliação <i data-feather="calendar"></i>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <custom-footer></custom-footer>
+
+    <script src="components/navbar.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="script.js"></script>
+    <script>feather.replace();</script>
+</body>
+</html>
