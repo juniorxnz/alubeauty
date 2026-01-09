@@ -117,7 +117,7 @@
                     <i data-feather="check-circle" class="text-rose-500 mr-2"></i>
                     <span>Atendimento personalizado e exclusivo</span>
                 </div>
-                <a href="sobre.html" class="inline-block mt-8 bg-rose-500 hover:bg-rose-600 text-white px-6 py-2 rounded-full font-medium transition-all duration-300">Conheça a minha história</a>
+                <a href="/pages/sobre.html" class="inline-block mt-8 bg-rose-500 hover:bg-rose-600 text-white px-6 py-2 rounded-full font-medium transition-all duration-300">Conheça a minha história</a>
             </div>
         </div>
     </section>
@@ -127,7 +127,7 @@
       <div class="container mx-auto px-6">
         <div class="text-center mb-16">
           <span class="text-secondary font-medium uppercase tracking-widest">Depoimentos</span>
-          <h2 class="text-4xl font-serif font-bold text-gray-800 mt-2">O que nossas clientes dizem</h2>
+          <h2 class="text-4xl font-serif font-bold text-gray-800 mt-2">Feedback das Clientes</h2>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -164,7 +164,7 @@
                 <i data-feather="star" fill="#f8c3cd" stroke="none" class="w-5 h-5"></i>
               </div>
             </div>
-            <p class="text-gray-600 italic mb-6">"Profissionais incríveis e resultados visíveis já na primeira sessão. Recomendo para todas minhas amigas!"</p>
+            <p class="text-gray-600 italic mb-6">"Profissional incrível e resultados visíveis já na primeira sessão. Recomendo para todas minhas amigas!"</p>
             <div class="flex items-center">
               <img src="http://static.photos/people/200x200/2" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
               <div>
@@ -204,8 +204,8 @@
             <h2 class="font-playfair text-3xl md:text-4xl font-bold mb-6">Pronta para sua transformação?</h2>
             <p class="text-xl mb-8">Agende agora mesmo seu horário e descubra os melhores tratamentos estéticos da cidade.</p>
             <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="agendamento.html" class="bg-white text-rose-500 hover:bg-rose-50 px-8 py-3 rounded-full font-medium transition-all duration-300">Agendar Consulta</a>
-                <a href="https://wa.me/5511999999999" class="bg-green-500 hover:bg-green-600 px-8 py-3 rounded-full font-medium transition-all duration-300 flex items-center justify-center gap-2">
+                <a href="/pages/agendamento.html" class="bg-white text-rose-500 hover:bg-rose-50 px-8 py-3 rounded-full font-medium transition-all duration-300">Agendar Consulta</a>
+                <a href="https://wa.me/553195524994" class="bg-green-500 hover:bg-green-600 px-8 py-3 rounded-full font-medium transition-all duration-300 flex items-center justify-center gap-2">
                     <i data-feather="message-circle"></i> WhatsApp
                 </a>
             </div>
@@ -217,7 +217,7 @@
     <script>
         feather.replace();
         
-        // Smooth scroll for anchor links
+        // smooth scroll para evitar TP
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -227,7 +227,7 @@
             });
         });
 
-        // Animation on scroll
+        // animação no scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -239,6 +239,52 @@
         document.querySelectorAll('section').forEach(section => {
             observer.observe(section);
         });
+      
+        // settings do agendamento
+        document.addEventListener('DOMContentLoaded', () => {
+        // init nos icons
+        feather.replace();
+
+        // data mínima (não permitir agendar no passado)
+        const dateInput = document.getElementById('dataAgenda');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.min = today;
+
+        // envio do form
+        const form = document.getElementById('formAgendamento');
+        
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // 1. Capturar os dados
+            const servico = document.querySelector('input[name="servico"]:checked').value;
+            const data = document.getElementById('dataAgenda').value;
+            const hora = document.getElementById('horaAgenda').value;
+            const nome = document.getElementById('nomeCliente').value;
+
+            // 2. Formatar a data para o padrão brasileiro (dd/mm/aaaa)
+            const dataObj = new Date(data);
+            const dataFormatada = dataObj.toLocaleDateString('pt-BR', {timeZone: 'UTC'});
+
+            // 3. Criar a mensagem do WhatsApp
+            // O %0A cria uma quebra de linha no link do WhatsApp
+            const mensagem = `Olá, Alu Beauty! 🌸%0A%0A` +
+                `Gostaria de solicitar um agendamento:%0A` +
+                `👤 *Nome:* ${nome}%0A` +
+                `💆‍♀️ *Serviço:* ${servico}%0A` +
+                `📅 *Data:* ${dataFormatada}%0A` +
+                `⏰ *Horário Sugerido:* ${hora}%0A%0A` +
+                `Aguardo a confirmação!`;
+
+            // 4. Redirecionar para o WhatsApp
+            // Substitua pelo número real da clínica (apenas números, com código do país e DDD)
+            const numeroWhatsApp = "553195524994"; 
+            const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
+
+            // Abre em nova aba
+            window.open(linkWhatsApp, '_blank');
+        });
+      });
     </script>
 
 </body>

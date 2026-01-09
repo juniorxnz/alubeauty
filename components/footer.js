@@ -5,7 +5,7 @@ class CustomFooter extends HTMLElement {
       <style>
         :host {
           display: block;
-          background-color: #333;
+          background-color: #000000ff;
           color: white;
           padding: 3rem 0;
         }
@@ -23,9 +23,10 @@ class CustomFooter extends HTMLElement {
           font-family: 'Playfair Display', serif;
           font-size: 1.5rem;
           font-weight: 600;
-          color: #D4AF37;
+          color: #ffffffff;
           margin-bottom: 1rem;
           display: inline-block;
+          text-decoration: none; /*pra remover o underline da logoo no footer*/
         }
         
         .footer-description {
@@ -52,8 +53,20 @@ class CustomFooter extends HTMLElement {
         }
         
         .social-link:hover {
-          background-color: #D4AF37;
+          background-color: #9f1239;
           transform: translateY(-3px);
+        }
+
+        /* Cor do Instagram (Magenta/Gradiente) */
+        .social-link.instagram {
+          background-color: #E4405F; 
+          color: white;
+        }
+
+        /* Cor do WhatsApp (Verde oficial) */
+        .social-link.whatsapp {
+          background-color: #25D366;
+          color: white;
         }
         
         .footer-title {
@@ -70,7 +83,7 @@ class CustomFooter extends HTMLElement {
           left: 0;
           width: 40px;
           height: 2px;
-          background-color: #D4AF37;
+          background-color: #9f1239;
         }
         
         .footer-links {
@@ -86,7 +99,7 @@ class CustomFooter extends HTMLElement {
         }
         
         .footer-link:hover {
-          color: #D4AF37;
+          color: #9f1239;
         }
         
         .contact-info {
@@ -125,10 +138,10 @@ class CustomFooter extends HTMLElement {
             Sua clínica de estética premium, oferecendo tratamentos personalizados para realçar sua beleza natural.
           </p>
           <div class="social-links">
-            <a href="https://www.instagram.com/alu_skinbeauty/" class="social-link">
+            <a href="https://www.instagram.com/alu_skinbeauty/" class="social-link instagram">
               <i data-feather="instagram"></i>
             </a>
-            <a href="https://whatsapp.com" class="social-link">
+            <a href="https://wa.me/553195524994"" class="social-link whatsapp">
               <i data-feather="message-circle"></i>
             </a>
           </div>
@@ -137,10 +150,10 @@ class CustomFooter extends HTMLElement {
         <div>
           <h3 class="footer-title">Links Rápidos</h3>
           <div class="footer-links">
-            <a href="/" class="footer-link">Home</a>
+            <a href="/" class="footer-link">Início</a>
             <a href="/servicos" class="footer-link">Serviços</a>
-            <a href="/sobre" class="footer-link">Sobre Nós</a>
-            <a href="/agendamento" class="footer-link">Agendamento</a>
+            <a href="/pages/sobre.html" class="footer-link">Sobre</a>
+            <a href="/pages/agendamento.html" class="footer-link">Agendamento</a>
           </div>
         </div>
         
@@ -160,11 +173,11 @@ class CustomFooter extends HTMLElement {
           <div class="contact-info">
             <div class="contact-item">
               <i data-feather="map-pin"></i>
-              <span>Rua Beleza, 123 - Centro</span>
+              <span>Rua José dos Reis, 464 - Canaã</span>
             </div>
             <div class="contact-item">
               <i data-feather="phone"></i>
-              <span>(11) 99999-9999</span>
+              <span> (31) 9552-4994 </span>
             </div>
             <div class="contact-item">
               <i data-feather="mail"></i>
@@ -184,7 +197,13 @@ class CustomFooter extends HTMLElement {
     `;
     
     // Initialize feather icons
-    feather.replace();
+    const icons = this.shadowRoot.querySelectorAll('[data-feather]');
+    icons.forEach(icon => {
+      const name = icon.getAttribute('data-feather');
+      icon.outerHTML = feather.icons[name].toSvg({
+        class: 'feather-icon' 
+      });
+    });
   }
 }
 

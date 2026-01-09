@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento - Alu Beauty</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="components/navbar.js"></script>
+    <script src="components/footer.js"></script>
+
+    <style>
+        /* Configuração de fontes do Tailwind */
+        body { font-family: 'Poppins', sans-serif; }
+        h1, h2, h3, .font-playfair { font-family: 'Playfair Display', serif; }
+    </style>
+</head>
+<body class="font-poppins bg-rose-50 text-rose-900 flex flex-col min-h-screen">
+    
+    <custom-navbar></custom-navbar>
+
+    <main class="flex-grow container mx-auto px-4 py-20 flex items-center justify-center">
+        
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden max-w-4xl w-full border border-rose-100">
+            <div class="md:flex">
+                <div class="md:w-1/3 bg-rose-500 p-8 text-white flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-playfair text-2xl font-bold mb-2">Agende seu momento</h3>
+                        <p class="text-rose-100 text-sm mb-6">Preencha os dados ao lado e enviaremos sua solicitação diretamente para nossa recepção.</p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <i data-feather="clock" class="text-rose-200"></i>
+                            <span class="text-sm">Seg-Sex: 9h - 19h</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i data-feather="map-pin" class="text-rose-200"></i>
+                            <span class="text-sm">Rua José dos Reis, 464</span>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="md:w-2/3 p-8">
+                    <form id="formAgendamento" class="space-y-6">
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Qual procedimento você deseja?</label>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="servico" value="Limpeza de Pele" class="peer sr-only" required>
+                                    <div class="p-3 border border-gray-200 rounded-lg peer-checked:border-rose-500 peer-checked:bg-rose-50 transition-all hover:bg-gray-50 flex items-center gap-2">
+                                        <i data-feather="droplet" class="w-4 h-4 text-rose-400"></i>
+                                        <span class="text-sm text-gray-700">Limpeza de Pele</span>
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="servico" value="Drenagem Linfática" class="peer sr-only">
+                                    <div class="p-3 border border-gray-200 rounded-lg peer-checked:border-rose-500 peer-checked:bg-rose-50 transition-all hover:bg-gray-50 flex items-center gap-2">
+                                        <i data-feather="wind" class="w-4 h-4 text-rose-400"></i>
+                                        <span class="text-sm text-gray-700">Drenagem</span>
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="servico" value="Design de Sobrancelhas" class="peer sr-only">
+                                    <div class="p-3 border border-gray-200 rounded-lg peer-checked:border-rose-500 peer-checked:bg-rose-50 transition-all hover:bg-gray-50 flex items-center gap-2">
+                                        <i data-feather="feather" class="w-4 h-4 text-rose-400"></i>
+                                        <span class="text-sm text-gray-700">Sobrancelhas</span>
+                                    </div>
+                                </label>
+                                 <label class="cursor-pointer">
+                                    <input type="radio" name="servico" value="Avaliação Gratuita" class="peer sr-only">
+                                    <div class="p-3 border border-gray-200 rounded-lg peer-checked:border-rose-500 peer-checked:bg-rose-50 transition-all hover:bg-gray-50 flex items-center gap-2">
+                                        <i data-feather="clipboard" class="w-4 h-4 text-rose-400"></i>
+                                        <span class="text-sm text-gray-700">Avaliação</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Data Preferida</label>
+                                <input type="date" id="dataAgenda" required 
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-200 focus:border-rose-500 outline-none transition-colors text-gray-600">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Horário (Sugestão)</label>
+                                <select id="horaAgenda" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-200 focus:border-rose-500 outline-none transition-colors text-gray-600 bg-white">
+                                    <option value="">Escolha...</option>
+                                    <option value="09:00">09:00</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="17:00">17:00</option>
+                                    <option value="18:00">18:00</option>
+                                </select>
+                            </div>
+                        </div>
+        
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Seu Nome</label>
+                                <input type="text" id="nomeCliente" placeholder="Como gostaria de ser chamada?" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-200 focus:border-rose-500 outline-none transition-colors">
+                            </div>
+                        </div>
+        
+                        <button type="submit" 
+                            class="w-full bg-rose-500 hover:bg-rose-600 text-white font-medium py-3 rounded-lg shadow-lg hover:shadow-rose-200 transition-all duration-300 transform hover:-translate-y-1 flex justify-center items-center gap-2">
+                            <span>Confirmar Solicitação via WhatsApp</span>
+                            <i data-feather="message-circle" class="w-5 h-5"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <custom-footer></custom-footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            feather.replace();
+
+            // Configuração da data mínima
+            const dateInput = document.getElementById('dataAgenda');
+            const form = document.getElementById('formAgendamento');
+            
+            if (dateInput) {
+                const today = new Date().toISOString().split('T')[0];
+                dateInput.min = today;
+            }
+
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+
+                    const servicoInput = document.querySelector('input[name="servico"]:checked');
+                    const servico = servicoInput ? servicoInput.value : "Não informado";
+                    const data = dateInput.value;
+                    const hora = document.getElementById('horaAgenda').value;
+                    const nome = document.getElementById('nomeCliente').value;
+
+                    const dataObj = new Date(data);
+                    const dataFormatada = dataObj.toLocaleDateString('pt-BR', {timeZone: 'UTC'});
+
+                    const mensagem = `Olá, Ana!` +
+                        `Gostaria de solicitar um agendamento:%0A` +
+                        `*Nome:* ${nome}%0A` +
+                        `*Serviço:* ${servico}%0A` +
+                        `*Data:* ${dataFormatada}%0A` +
+                        `*Horário Sugerido:* ${hora}%0A%0A` +
+                        `Aguardo a confirmação!`;
+
+                    const numeroWhatsApp = "553195524994"; 
+                    const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
+
+                    window.open(linkWhatsApp, '_blank');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
