@@ -85,7 +85,7 @@ class CustomNavbar extends HTMLElement {
                         gap: 1.5rem;
                         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
                         transform: translateY(-150%);
-                        transition: transform 0.3s ease;
+                        transition: transform 0.1s ease;
                     }
                     
                     .nav-links.active {
@@ -99,7 +99,7 @@ class CustomNavbar extends HTMLElement {
             </style>
             
             <div class="navbar-container">
-                <a href="/" class="logo">AluBeauty</a>
+                <a href="/" class="logo"></a>
                 
                 <button class="mobile-menu-btn">
                     <i data-feather="menu"></i>
@@ -107,8 +107,8 @@ class CustomNavbar extends HTMLElement {
                 
                 <div class="nav-links">
                     <a href="/index.html" class="nav-link">Início</a>
-                    <a href="pages/sobre.html" class="nav-link">Sobre</a>
-                    <a href="#services" class="nav-link">Serviços</a>
+                    <a href="/pages/sobre.html" class="nav-link">Sobre</a>
+                    <a href="/pages/servicos.html" class="nav-link">Serviços</a>
                     <a href="/pages/agendamento.html" class="nav-link">Agendar Atendimento</a>
                 </div>
             </div>

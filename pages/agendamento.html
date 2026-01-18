@@ -3,170 +3,515 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agendamento - Alu Beauty</title>
+    <title>Agendamento Online - Alu Beauty</title>
     
+    <link rel="stylesheet" href="/assets/css/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <script src="components/navbar.js"></script>
-    <script src="components/footer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.4.3/imask.min.js"></script>
+
+    <script src="/components/footer.js"></script>
+    <script src="/components/navbar.js"></script>
 
     <style>
-        /* Configuração de fontes do Tailwind */
-        body { font-family: 'Poppins', sans-serif; }
-        h1, h2, h3, .font-playfair { font-family: 'Playfair Display', serif; }
+        /* Estilos específicos para seleção */
+        .service-card.selected { border-color: #f43f5e; background-color: #fff1f2; }
+        .time-slot.selected { background-color: #f43f5e; color: white; border-color: #f43f5e; }
+        .time-slot.disabled { opacity: 0.5; cursor: not-allowed; background-color: #f3f4f6; }
+        
+        /* Animação suave entre etapas */
+        .step-content { display: none; animation: fadeIn 0.4s ease-in-out; }
+        .step-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
-<body class="font-poppins bg-rose-50 text-rose-900 flex flex-col min-h-screen">
-    
+<body class="font-poppins bg-rose-50 text-rose-900 overflow-x-hidden">
+
     <custom-navbar></custom-navbar>
 
-    <main class="flex-grow container mx-auto px-4 py-20 flex items-center justify-center">
-        
-        <div class="bg-white rounded-2xl shadow-xl overflow-hidden max-w-4xl w-full border border-rose-100">
-            <div class="md:flex">
-                <div class="md:w-1/3 bg-rose-500 p-8 text-white flex flex-col justify-between">
-                    <div>
-                        <h3 class="font-playfair text-2xl font-bold mb-2">Agende seu momento</h3>
-                        <p class="text-rose-100 text-sm mb-6">Preencha os dados ao lado e enviaremos sua solicitação diretamente para nossa recepção.</p>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-3">
-                            <i data-feather="clock" class="text-rose-200"></i>
-                            <span class="text-sm">Seg-Sex: 9h - 19h</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <i data-feather="map-pin" class="text-rose-200"></i>
-                            <span class="text-sm">Rua José dos Reis, 464</span>
-                        </div>
-                    </div>
+    <header class="bg-white pt-28 pb-16 text-center shadow-sm relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-rose-300 via-rose-500 to-rose-300"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <h1 class="font-playfair text-4xl md:text-5xl font-bold text-gray-800 mb-4">Agende seu horário</h1>
+            <p class="text-gray-500 text-lg max-w-2xl mx-auto mb-8">Escolha o serviço ideal e encontre o melhor momento para cuidar de você. Rápido, fácil e prático.</p>
+            <div class="flex justify-center gap-4">
+                <a href="#wizard-container" class="bg-rose-500 text-white px-8 py-3 rounded-full font-medium hover:bg-rose-600 transition shadow-lg hover:shadow-rose-200">
+                    Começar agora
+                </a>
+                <a href="servicos.html" class="text-rose-500 border border-rose-200 bg-rose-50 px-8 py-3 rounded-full font-medium hover:bg-rose-100 transition">
+                    Ver detalhes dos serviços
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-12 border-b border-rose-100">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md mb-3 text-rose-500 font-bold text-xl">1</div>
+                    <span class="text-sm font-medium text-gray-700">Escolha o Serviço</span>
                 </div>
-        
-                <div class="md:w-2/3 p-8">
-                    <form id="formAgendamento" class="space-y-6">
-                        
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Qual procedimento você deseja?</label>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                <label class="cursor-pointer">
-                                    <input type="radio" name="servico" value="Limpeza de Pele" class="peer sr-only" required>
-                                    <div class="p-3 border border-gray-200 rounded-lg peer-checked:border-rose-500 peer-checked:bg-rose-50 transition-all hover:bg-gray-50 flex items-center gap-2">
-                                        <i data-feather="droplet" class="w-4 h-4 text-rose-400"></i>
-                                        <span class="text-sm text-gray-700">Limpeza de Pele</span>
-                                    </div>
-                                </label>
-                                <label class="cursor-pointer">
-                                    <input type="radio" name="servico" value="Drenagem Linfática" class="peer sr-only">
-                                    <div class="p-3 border border-gray-200 rounded-lg peer-checked:border-rose-500 peer-checked:bg-rose-50 transition-all hover:bg-gray-50 flex items-center gap-2">
-                                        <i data-feather="wind" class="w-4 h-4 text-rose-400"></i>
-                                        <span class="text-sm text-gray-700">Drenagem</span>
-                                    </div>
-                                </label>
-                                <label class="cursor-pointer">
-                                    <input type="radio" name="servico" value="Design de Sobrancelhas" class="peer sr-only">
-                                    <div class="p-3 border border-gray-200 rounded-lg peer-checked:border-rose-500 peer-checked:bg-rose-50 transition-all hover:bg-gray-50 flex items-center gap-2">
-                                        <i data-feather="feather" class="w-4 h-4 text-rose-400"></i>
-                                        <span class="text-sm text-gray-700">Sobrancelhas</span>
-                                    </div>
-                                </label>
-                                 <label class="cursor-pointer">
-                                    <input type="radio" name="servico" value="Avaliação Gratuita" class="peer sr-only">
-                                    <div class="p-3 border border-gray-200 rounded-lg peer-checked:border-rose-500 peer-checked:bg-rose-50 transition-all hover:bg-gray-50 flex items-center gap-2">
-                                        <i data-feather="clipboard" class="w-4 h-4 text-rose-400"></i>
-                                        <span class="text-sm text-gray-700">Avaliação</span>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-        
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Data Preferida</label>
-                                <input type="date" id="dataAgenda" required 
-                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-200 focus:border-rose-500 outline-none transition-colors text-gray-600">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Horário (Sugestão)</label>
-                                <select id="horaAgenda" required
-                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-200 focus:border-rose-500 outline-none transition-colors text-gray-600 bg-white">
-                                    <option value="">Escolha...</option>
-                                    <option value="09:00">09:00</option>
-                                    <option value="10:00">10:00</option>
-                                    <option value="11:00">11:00</option>
-                                    <option value="14:00">14:00</option>
-                                    <option value="15:00">15:00</option>
-                                    <option value="16:00">16:00</option>
-                                    <option value="17:00">17:00</option>
-                                    <option value="18:00">18:00</option>
-                                </select>
-                            </div>
-                        </div>
-        
-                        <div class="space-y-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Seu Nome</label>
-                                <input type="text" id="nomeCliente" placeholder="Como gostaria de ser chamada?" required
-                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-200 focus:border-rose-500 outline-none transition-colors">
-                            </div>
-                        </div>
-        
-                        <button type="submit" 
-                            class="w-full bg-rose-500 hover:bg-rose-600 text-white font-medium py-3 rounded-lg shadow-lg hover:shadow-rose-200 transition-all duration-300 transform hover:-translate-y-1 flex justify-center items-center gap-2">
-                            <span>Confirmar Solicitação via WhatsApp</span>
-                            <i data-feather="message-circle" class="w-5 h-5"></i>
-                        </button>
-                    </form>
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md mb-3 text-rose-500 font-bold text-xl">2</div>
+                    <span class="text-sm font-medium text-gray-700">Data e Hora</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md mb-3 text-rose-500 font-bold text-xl">3</div>
+                    <span class="text-sm font-medium text-gray-700">Seus Dados</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md mb-3 text-green-500 font-bold text-xl"><i data-feather="check"></i></div>
+                    <span class="text-sm font-medium text-gray-700">Confirmação WhatsApp</span>
                 </div>
             </div>
         </div>
+    </section>
+
+    <main id="wizard-container" class="container mx-auto px-4 py-12 max-w-5xl">
+        
+        <div class="mb-8 bg-gray-200 rounded-full h-2.5 w-full max-w-2xl mx-auto">
+            <div id="progress-bar" class="bg-rose-500 h-2.5 rounded-full transition-all duration-500" style="width: 25%"></div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden min-h-[500px] flex flex-col">
+            
+            <div id="step-1" class="step-content active p-6 md:p-10">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+                    <h2 class="font-playfair text-2xl font-bold text-gray-800">1. Selecione o Serviço</h2>
+                    
+                    <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                        <select id="category-filter" class="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-rose-500">
+                            <option value="all">Todas Categorias</option>
+                            <option value="Depilação">Depilação</option>
+                            <option value="Massagem">Massagens</option>
+                            <option value="Sobrancelhas">Sobrancelhas</option>
+                            <option value="Facial">Faciais</option>
+                            <option value="Corporal">Corporais</option>
+                            <option value="Extras">Extras</option>
+                        </select>
+                        <input type="text" id="search-service" placeholder="Buscar serviço..." class="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-rose-500 w-full sm:w-64">
+                    </div>
+                </div>
+
+                <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
+                    </div>
+                
+                <div class="mt-8 flex justify-end">
+                    <button onclick="nextStep(2)" id="btn-next-1" disabled class="bg-gray-300 text-white px-8 py-3 rounded-full font-medium transition cursor-not-allowed">
+                        Escolher Horário <i data-feather="arrow-right" class="inline w-4 h-4 ml-1"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="step-2" class="step-content p-6 md:p-10">
+                <div class="flex items-center mb-6">
+                    <button onclick="prevStep(1)" class="text-rose-500 hover:bg-rose-50 p-2 rounded-full mr-4"><i data-feather="arrow-left"></i></button>
+                    <h2 class="font-playfair text-2xl font-bold text-gray-800">2. Data e Horário</h2>
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-10">
+                    <div class="w-full md:w-1/2">
+                        <label class="block text-gray-700 font-medium mb-2">Escolha o dia:</label>
+                        <input type="date" id="date-input" class="w-full border border-gray-300 rounded-lg p-4 text-gray-700 focus:border-rose-500 focus:ring-2 focus:ring-rose-200 outline-none transition">
+                        <p class="text-xs text-gray-500 mt-2"><i data-feather="info" class="w-3 h-3 inline"></i> Atendemos de Seg a Sáb.</p>
+                    </div>
+
+                    <div class="w-full md:w-1/2">
+                        <label class="block text-gray-700 font-medium mb-2">Horários disponíveis:</label>
+                        <div id="time-slots-container" class="grid grid-cols-3 sm:grid-cols-4 gap-3">
+                            <p class="text-gray-400 text-sm col-span-3 italic">Selecione uma data para ver os horários.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-10 flex justify-end">
+                    <button onclick="nextStep(3)" id="btn-next-2" disabled class="bg-gray-300 text-white px-8 py-3 rounded-full font-medium transition cursor-not-allowed">
+                        Continuar <i data-feather="arrow-right" class="inline w-4 h-4 ml-1"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="step-3" class="step-content p-6 md:p-10">
+                <div class="flex items-center mb-6">
+                    <button onclick="prevStep(2)" class="text-rose-500 hover:bg-rose-50 p-2 rounded-full mr-4"><i data-feather="arrow-left"></i></button>
+                    <h2 class="font-playfair text-2xl font-bold text-gray-800">3. Seus Dados</h2>
+                </div>
+
+                <div class="max-w-xl mx-auto space-y-5">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Nome Completo *</label>
+                        <input type="text" id="client-name" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:border-rose-500 outline-none">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">WhatsApp *</label>
+                        <input type="text" id="client-phone" placeholder="(31) 90000-0000" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:border-rose-500 outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Observações (Opcional)</label>
+                        <textarea id="client-obs" placeholder="Tem alguma alergia? Preferência especial?" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:border-rose-500 outline-none h-24"></textarea>
+                    </div>
+
+                    <div class="flex items-start gap-2">
+                        <input type="checkbox" id="policy-check" class="mt-1 w-4 h-4 text-rose-500 rounded border-gray-300 focus:ring-rose-500">
+                        <label for="policy-check" class="text-sm text-gray-600">Concordo com a <a href="#politica" class="text-rose-500 underline">política de cancelamento</a> e agendamento.</label>
+                    </div>
+                </div>
+
+                <div class="mt-10 flex justify-end">
+                    <button onclick="nextStep(4)" id="btn-next-3" disabled class="bg-gray-300 text-white px-8 py-3 rounded-full font-medium transition cursor-not-allowed">
+                        Revisar Agendamento <i data-feather="arrow-right" class="inline w-4 h-4 ml-1"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="step-4" class="step-content p-6 md:p-10 text-center">
+                <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i data-feather="check-circle" class="text-green-500 w-10 h-10"></i>
+                </div>
+                <h2 class="font-playfair text-3xl font-bold text-gray-800 mb-2">Quase lá!</h2>
+                <p class="text-gray-600 mb-8">Confira os dados abaixo e clique no botão para finalizar via WhatsApp.</p>
+
+                <div class="bg-gray-50 rounded-xl p-6 text-left max-w-md mx-auto border border-gray-200 shadow-sm mb-8">
+                    <div class="flex justify-between border-b border-gray-200 pb-3 mb-3">
+                        <span class="text-gray-500 text-sm">Serviço</span>
+                        <span id="summary-service" class="font-bold text-gray-800">...</span>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-200 pb-3 mb-3">
+                        <span class="text-gray-500 text-sm">Duração Estimada</span>
+                        <span id="summary-duration" class="font-bold text-gray-800">...</span>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-200 pb-3 mb-3">
+                        <span class="text-gray-500 text-sm">Data</span>
+                        <span id="summary-date" class="font-bold text-gray-800">...</span>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-200 pb-3 mb-3">
+                        <span class="text-gray-500 text-sm">Horário</span>
+                        <span id="summary-time" class="font-bold text-gray-800">...</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-500 text-sm">Cliente</span>
+                        <span id="summary-name" class="font-bold text-gray-800">...</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-3 justify-center items-center">
+                    <a href="#" id="btn-whatsapp-final" target="_blank" class="bg-green-500 hover:bg-green-600 text-white text-lg px-10 py-4 rounded-full font-bold transition shadow-xl flex items-center gap-2 transform hover:-translate-y-1">
+                        <i data-feather="message-circle"></i> Confirmar no WhatsApp
+                    </a>
+                    <button onclick="prevStep(3)" class="text-gray-500 text-sm hover:underline mt-2">Voltar e corrigir dados</button>
+                </div>
+            </div>
+
+        </div>
     </main>
 
+    
+    <section class="py-12">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <h2 class="font-playfair text-2xl font-bold text-center text-gray-800 mb-8">Dúvidas Frequentes</h2>
+            <div class="space-y-4">
+                <details class="group bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+                        <span>Preciso pagar antecipado?</span>
+                        <span class="transition group-open:rotate-180"><i data-feather="chevron-down"></i></span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 text-sm">Geralmente o pagamento é feito no local após o procedimento. Para pacotes ou datas muito disputadas, podemos solicitar um sinal via PIX.</p>
+                </details>
+                <details class="group bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+                        <span>Posso levar acompanhante?</span>
+                        <span class="transition group-open:rotate-180"><i data-feather="chevron-down"></i></span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 text-sm">Para seu maior conforto e relaxamento, além de segurança sanitária, recomendamos vir desacompanhada, salvo menores de idade.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+    
+    <section id="politica" class="py-10">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <h3 class="font-playfair text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                <i data-feather="alert-circle" class="text-rose-500"></i> Política de Cancelamento e Atrasos
+            </h3>
+            <div class="bg-white p-6 rounded-lg border border-gray-200 text-sm text-gray-600 space-y-3">
+                <p>• <strong>Cancelamento:</strong> Pedimos a gentileza de avisar com pelo menos 24 horas de antecedência para reagendamento sem custo.</p>
+                <p>• <strong>Atrasos:</strong> Tolerância máxima de 10 minutos. Após esse período, o atendimento poderá ser reduzido ou remarcado para não prejudicar a próxima cliente.</p>
+                <p>• <strong>Confirmação:</strong> Seu horário só está garantido após a confirmação recebida pelo WhatsApp.</p>
+            </div>
+        </div>
+    </section>
+
     <custom-footer></custom-footer>
-
+    
     <script>
+        feather.replace();
+        
+        // --- CONFIGURAÇÃO ---
+        const WHATSAPP_NUMBER = "553195524994"; // Seu número
+        
+        // --- DADOS DOS SERVIÇOS ---
+        const services = [
+            // Depilação
+            { id: 1, name: "Depilação (Axila)", category: "Depilação", duration: "15min", price: "R$ 25", desc: "Cera morna hipoalergênica." },
+            { id: 2, name: "Depilação (Perna Inteira)", category: "Depilação", duration: "40min", price: "R$ 60", desc: "Perna completa, toque suave." },
+            { id: 3, name: "Depilação (Meia Perna)", category: "Depilação", duration: "25min", price: "R$ 35", desc: "Do joelho para baixo." },
+            { id: 4, name: "Depilação (Virilha Simples)", category: "Depilação", duration: "20min", price: "R$ 45", desc: "Apenas contorno do biquíni." },
+            { id: 5, name: "Depilação (Virilha Completa)", category: "Depilação", duration: "30min", price: "R$ 65", desc: "Remoção total ou personalizada." },
+            { id: 6, name: "Depilação (Buço)", category: "Depilação", duration: "15min", price: "R$ 20", desc: "Na linha ou cera." },
+
+            // Massagens
+            { id: 7, name: "Drenagem Linfática", category: "Massagem", duration: "50min", price: "R$ 120", desc: "Reduz inchaço e retenção." },
+            { id: 8, name: "Massagem Relaxante", category: "Massagem", duration: "50min", price: "R$ 100", desc: "Alívio de tensão e estresse." },
+            { id: 9, name: "Massagem Modeladora", category: "Massagem", duration: "50min", price: "R$ 130", desc: "Foco em contorno corporal." },
+
+            // Sobrancelhas
+            { id: 10, name: "Design de Sobrancelhas", category: "Sobrancelhas", duration: "30min", price: "R$ 40", desc: "Visagismo e limpeza." },
+            { id: 11, name: "Design + Henna", category: "Sobrancelhas", duration: "45min", price: "R$ 55", desc: "Preenchimento e definição." },
+
+            // Faciais
+            { id: 12, name: "Limpeza de Pele Profunda", category: "Facial", duration: "1h 30min", price: "R$ 150", desc: "Extração, hidratação e LED." },
+            { id: 13, name: "Hidratação Facial", category: "Facial", duration: "45min", price: "R$ 90", desc: "Reposição hídrica e viço." },
+            { id: 14, name: "Peeling Químico", category: "Facial", duration: "40min", price: "R$ 180", desc: "Renovação celular intensa." },
+
+            // Corporais
+            { id: 15, name: "Tratamento Celulite", category: "Corporal", duration: "50min", price: "A avaliar", desc: "Protocolo combinado." },
+            { id: 16, name: "Avaliação Estética", category: "Extras", duration: "20min", price: "Grátis", desc: "Análise para indicar tratamentos." }
+        ];
+
+        // --- ESTADO DA APLICAÇÃO ---
+        let appointment = {
+            service: null,
+            date: null,
+            time: null,
+            clientName: "",
+            clientPhone: "",
+            clientObs: ""
+        };
+
+        // --- INICIALIZAÇÃO E EVENTOS ---
         document.addEventListener('DOMContentLoaded', () => {
-            feather.replace();
-
-            // Configuração da data mínima
-            const dateInput = document.getElementById('dataAgenda');
-            const form = document.getElementById('formAgendamento');
+            renderServices(services);
+            setupDateInput();
+            setupMask();
             
-            if (dateInput) {
-                const today = new Date().toISOString().split('T')[0];
-                dateInput.min = today;
-            }
+            // Filtros
+            document.getElementById('search-service').addEventListener('input', filterServices);
+            document.getElementById('category-filter').addEventListener('change', filterServices);
 
-            if (form) {
-                form.addEventListener('submit', (e) => {
-                    e.preventDefault();
-
-                    const servicoInput = document.querySelector('input[name="servico"]:checked');
-                    const servico = servicoInput ? servicoInput.value : "Não informado";
-                    const data = dateInput.value;
-                    const hora = document.getElementById('horaAgenda').value;
-                    const nome = document.getElementById('nomeCliente').value;
-
-                    const dataObj = new Date(data);
-                    const dataFormatada = dataObj.toLocaleDateString('pt-BR', {timeZone: 'UTC'});
-
-                    const mensagem = `Olá, Ana!` +
-                        `Gostaria de solicitar um agendamento:%0A` +
-                        `*Nome:* ${nome}%0A` +
-                        `*Serviço:* ${servico}%0A` +
-                        `*Data:* ${dataFormatada}%0A` +
-                        `*Horário Sugerido:* ${hora}%0A%0A` +
-                        `Aguardo a confirmação!`;
-
-                    const numeroWhatsApp = "553195524994"; 
-                    const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
-
-                    window.open(linkWhatsApp, '_blank');
-                });
-            }
+            // Inputs de dados
+            document.getElementById('client-name').addEventListener('input', validateStep3);
+            document.getElementById('client-phone').addEventListener('input', validateStep3);
+            document.getElementById('policy-check').addEventListener('change', validateStep3);
         });
+
+        // --- LÓGICA DE ETAPAS (WIZARD) ---
+        function nextStep(step) {
+            document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
+            document.getElementById(`step-${step}`).classList.add('active');
+            
+            // Atualiza barra de progresso
+            const progress = { 1: '25%', 2: '50%', 3: '75%', 4: '100%' };
+            document.getElementById('progress-bar').style.width = progress[step];
+
+            // Scroll para o topo do wizard
+            document.getElementById('wizard-container').scrollIntoView({ behavior: 'smooth' });
+
+            if (step === 4) updateSummary();
+        }
+
+        function prevStep(step) {
+            nextStep(step);
+        }
+
+        // --- PASSO 1: SERVIÇOS ---
+        function renderServices(list) {
+            const container = document.getElementById('services-grid');
+            container.innerHTML = '';
+
+            if (list.length === 0) {
+                container.innerHTML = '<p class="text-gray-500 col-span-3 text-center py-4">Nenhum serviço encontrado.</p>';
+                return;
+            }
+
+            list.forEach(item => {
+                const div = document.createElement('div');
+                div.className = `service-card border border-gray-200 rounded-lg p-4 cursor-pointer hover:shadow-md transition bg-white flex flex-col justify-between h-full ${appointment.service?.id === item.id ? 'selected' : ''}`;
+                div.onclick = () => selectService(item, div);
+                
+                div.innerHTML = `
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-semibold bg-rose-100 text-rose-600 px-2 py-1 rounded-full uppercase tracking-wide">${item.category}</span>
+                            <span class="text-xs text-gray-400 flex items-center"><i data-feather="clock" class="w-3 h-3 mr-1"></i> ${item.duration}</span>
+                        </div>
+                        <h3 class="font-bold text-gray-800 text-lg leading-tight mb-1">${item.name}</h3>
+                        <p class="text-sm text-gray-500 mb-3 line-clamp-2">${item.desc}</p>
+                    </div>
+                    <div class="mt-2 pt-2 border-t border-gray-100 flex justify-between items-center">
+                        <span class="font-semibold text-rose-500">${item.price}</span>
+                        <span class="text-xs text-rose-400 font-medium">Selecionar</span>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+            feather.replace();
+        }
+
+        function filterServices() {
+            const term = document.getElementById('search-service').value.toLowerCase();
+            const cat = document.getElementById('category-filter').value;
+
+            const filtered = services.filter(s => {
+                const matchTerm = s.name.toLowerCase().includes(term);
+                const matchCat = cat === 'all' || s.category === cat;
+                return matchTerm && matchCat;
+            });
+            renderServices(filtered);
+        }
+
+        function selectService(item, element) {
+            appointment.service = item;
+            
+            // UI Update
+            document.querySelectorAll('.service-card').forEach(el => el.classList.remove('selected'));
+            element.classList.add('selected');
+            
+            // Enable Next Button
+            const btn = document.getElementById('btn-next-1');
+            btn.disabled = false;
+            btn.classList.remove('bg-gray-300', 'cursor-not-allowed');
+            btn.classList.add('bg-rose-500', 'hover:bg-rose-600');
+        }
+
+        // --- PASSO 2: DATA E HORA ---
+        function setupDateInput() {
+            const input = document.getElementById('date-input');
+            const today = new Date().toISOString().split('T')[0];
+            input.min = today;
+
+            input.addEventListener('change', (e) => {
+                generateTimeSlots(e.target.value);
+            });
+        }
+
+        function generateTimeSlots(dateString) {
+            const container = document.getElementById('time-slots-container');
+            container.innerHTML = '';
+            appointment.date = dateString;
+            appointment.time = null; // Reset time
+            document.getElementById('btn-next-2').disabled = true;
+            document.getElementById('btn-next-2').classList.add('bg-gray-300', 'cursor-not-allowed');
+            document.getElementById('btn-next-2').classList.remove('bg-rose-500', 'hover:bg-rose-600');
+
+            const date = new Date(dateString + 'T00:00:00'); // Force local time
+            const dayOfWeek = date.getDay(); // 0 = Domingo
+
+            if (dayOfWeek === 0) {
+                container.innerHTML = '<p class="col-span-4 text-center text-rose-500 font-medium p-4 bg-rose-50 rounded-lg">Não atendemos aos domingos. Por favor, escolha outra data.</p>';
+                return;
+            }
+
+            // Horários fictícios (Seg-Sex 9-18, Sab 9-13)
+            let startHour = 9;
+            let endHour = dayOfWeek === 6 ? 13 : 18;
+            
+            for (let h = startHour; h < endHour; h++) {
+                createSlot(`${h}:00`, container);
+                if (h !== endHour) createSlot(`${h}:30`, container); // Intervalos de 30min
+            }
+        }
+
+        function createSlot(time, container) {
+            const btn = document.createElement('button');
+            btn.className = 'time-slot border border-gray-300 rounded-md py-2 px-1 text-sm font-medium hover:border-rose-400 transition';
+            btn.innerText = time;
+            
+            // Simulação simples: dar block em horários passados se for hoje
+            const now = new Date();
+            const selectedDate = new Date(appointment.date + 'T00:00:00');
+            const [h, m] = time.split(':');
+            
+            if (selectedDate.toDateString() === now.toDateString()) {
+                if (parseInt(h) < now.getHours() || (parseInt(h) === now.getHours() && parseInt(m) < now.getMinutes())) {
+                    btn.classList.add('disabled');
+                    btn.disabled = true;
+                }
+            }
+
+            btn.onclick = () => {
+                document.querySelectorAll('.time-slot').forEach(el => el.classList.remove('selected'));
+                btn.classList.add('selected');
+                appointment.time = time;
+                
+                // Enable Next Button
+                const nextBtn = document.getElementById('btn-next-2');
+                nextBtn.disabled = false;
+                nextBtn.classList.remove('bg-gray-300', 'cursor-not-allowed');
+                nextBtn.classList.add('bg-rose-500', 'hover:bg-rose-600');
+            };
+            container.appendChild(btn);
+        }
+
+        // --- PASSO 3: DADOS ---
+        function setupMask() {
+            const phoneInput = document.getElementById('client-phone');
+            IMask(phoneInput, { mask: '(00) 00000-0000' });
+        }
+
+        function validateStep3() {
+            const name = document.getElementById('client-name').value.trim();
+            const phone = document.getElementById('client-phone').value.trim();
+            const policy = document.getElementById('policy-check').checked;
+            
+            const btn = document.getElementById('btn-next-3');
+            
+            if (name.length > 2 && phone.length >= 14 && policy) {
+                btn.disabled = false;
+                btn.classList.remove('bg-gray-300', 'cursor-not-allowed');
+                btn.classList.add('bg-rose-500', 'hover:bg-rose-600');
+                
+                appointment.clientName = name;
+                appointment.clientPhone = phone;
+                appointment.clientObs = document.getElementById('client-obs').value;
+            } else {
+                btn.disabled = true;
+                btn.classList.add('bg-gray-300', 'cursor-not-allowed');
+                btn.classList.remove('bg-rose-500', 'hover:bg-rose-600');
+            }
+        }
+
+        // --- PASSO 4: FINALIZAÇÃO ---
+        function updateSummary() {
+            document.getElementById('summary-service').innerText = appointment.service.name;
+            document.getElementById('summary-duration').innerText = appointment.service.duration;
+            
+            // Formatar data para PT-BR
+            const dateObj = new Date(appointment.date + 'T00:00:00');
+            document.getElementById('summary-date').innerText = dateObj.toLocaleDateString('pt-BR');
+            
+            document.getElementById('summary-time').innerText = appointment.time;
+            document.getElementById('summary-name').innerText = appointment.clientName;
+
+            // Gerar Link WhatsApp
+            const msg = `Olá, Ana! %0A%0A` +
+                        `Gostaria de confirmar o seguinte agendamento:%0A` +
+                        `*Serviço:* ${appointment.service.name}%0A` +
+                        `*Data:* ${dateObj.toLocaleDateString('pt-BR')}%0A` +
+                        `*Horário:* ${appointment.time}%0A` +
+                        `*Cliente:* ${appointment.clientName}%0A` +
+                        `*Telefone:* ${appointment.clientPhone}%0A` +
+                        (appointment.clientObs ? `📝 *Obs:* ${appointment.clientObs}%0A` : '') +
+                        `%0AAguardo confirmação!`;
+            
+            document.getElementById('btn-whatsapp-final').href = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+        }
     </script>
 </body>
 </html>

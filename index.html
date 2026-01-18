@@ -39,7 +39,7 @@
       <div class="container mx-auto px-6">
         <div class="text-center mb-16">
           <span class="text-secondary font-medium uppercase tracking-widest">Serviços</span>
-          <h2 class="text-4xl font-serif font-bold text-gray-800 mt-2">Tratamentos Realizados</h2>
+          <h2 class="text-4xl font-bold text-gray-800 mt-2">Tratamentos Realizados</h2>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -48,7 +48,7 @@
             <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
               <i data-feather="feather" class="text-primary w-8 h-8"></i>
             </div>
-            <h3 class="text-xl font-serif font-semibold text-gray-800 mb-3">Design de Sobrancelhas</h3>
+            <h3 class="text-xl  font-semibold text-gray-800 mb-3">Design de Sobrancelhas</h3>
             <p class="text-gray-600 mb-4">Modelagem perfeita para valorizar seu olhar com técnicas avançadas.</p>
             <div class="flex justify-between items-center">
               <a href="#agendamento" class="text-primary hover:text-primary/80 font-medium flex items-center">
@@ -62,7 +62,7 @@
             <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
               <i data-feather="droplet" class="text-primary w-8 h-8"></i>
             </div>
-            <h3 class="text-xl font-serif font-semibold text-gray-800 mb-3">Limpeza de Pele</h3>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">Limpeza de Pele</h3>
             <p class="text-gray-600 mb-4">Renovação celular com produtos premium para uma pele radiante.</p>
             <div class="flex justify-between items-center">
               <a href="#agendamento" class="text-primary hover:text-primary/80 font-medium flex items-center">
@@ -76,7 +76,7 @@
             <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
               <i data-feather="wind" class="text-primary w-8 h-8"></i>
             </div>
-            <h3 class="text-xl font-serif font-semibold text-gray-800 mb-3">Drenagem Linfática</h3>
+            <h3 class="text-xl  font-semibold text-gray-800 mb-3">Drenagem Linfática</h3>
             <p class="text-gray-600 mb-4">Técnica especializada para reduzir medidas e melhorar circulação.</p>
             <div class="flex justify-between items-center">
               <a href="#agendamento" class="text-primary hover:text-primary/80 font-medium flex items-center">
@@ -127,7 +127,7 @@
       <div class="container mx-auto px-6">
         <div class="text-center mb-16">
           <span class="text-secondary font-medium uppercase tracking-widest">Depoimentos</span>
-          <h2 class="text-4xl font-serif font-bold text-gray-800 mt-2">Feedback das Clientes</h2>
+          <h2 class="text-4xl  font-bold text-gray-800 mt-2">Feedback das Clientes</h2>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -199,9 +199,9 @@
     </section>
 
     <!-- Seção de chamada para ação (agendamento e contato do wpp) -->
-    <section id="agendamento" class="py-16 px-4 md:px-8 bg-gradient-to-r from-rose-400 to-rose-300 text-white">
+    <section id="agendamento" class="py-16 px-4 md:px-8 bg-rose-600 text-white">
         <div class="max-w-4xl mx-auto text-center">
-            <h2 class="font-playfair text-3xl md:text-4xl font-bold mb-6">Pronta para sua transformação?</h2>
+            <h2 class="bg-rose-600 font-playfair text-3xl md:text-4xl font-bold mb-6">Pronta para sua transformação?</h2>
             <p class="text-xl mb-8">Agende agora mesmo seu horário e descubra os melhores tratamentos estéticos da cidade.</p>
             <div class="flex flex-col md:flex-row justify-center gap-4">
                 <a href="/pages/agendamento.html" class="bg-white text-rose-500 hover:bg-rose-50 px-8 py-3 rounded-full font-medium transition-all duration-300">Agendar Consulta</a>
@@ -217,7 +217,7 @@
     <script>
         feather.replace();
         
-        // smooth scroll para evitar TP
+        // smooth scroll para evitar TP (NÃO MEXER)(NÃO MEXER)(NÃO MEXER)(NÃO MEXER)(NÃO MEXER)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -245,7 +245,7 @@
         // init nos icons
         feather.replace();
 
-        // data mínima (não permitir agendar no passado)
+        // data mínima (p não permitir agendar no passado)
         const dateInput = document.getElementById('dataAgenda');
         const today = new Date().toISOString().split('T')[0];
         dateInput.min = today;
