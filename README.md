@@ -1,6 +1,6 @@
 # Alu Beauty — Estética & Bem-Estar 💗
 
-Site institucional responsivo (mobile-first) para a **Alu Beauty**, com foco em apresentação de serviços, depoimentos e chamada para agendamento via WhatsApp.
+Site institucional responsivo (mobile-first) para a clínica **Alu Beauty**, com foco em apresentação de serviços, depoimentos e chamada para agendamento via WhatsApp.
 
 > Projeto feito com HTML + CSS + Tailwind (CDN) e componentes reutilizáveis em JavaScript (Web Components).
 
