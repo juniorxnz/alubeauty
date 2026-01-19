@@ -1,4 +1,4 @@
-# Alu Beauty — Estética & Bem-Estar 💗
+# Alu Beauty — Estética & Bem-Estar ✨
 
 Site institucional responsivo (mobile-first) para a clínica **Alu Beauty**, com foco em apresentação de serviços, depoimentos e chamada para agendamento via WhatsApp.
 
