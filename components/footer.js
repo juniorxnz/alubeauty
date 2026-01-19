@@ -5,7 +5,7 @@ class CustomFooter extends HTMLElement {
       <style>
         :host {
           display: block;
-          background-color: #000000ff;
+          background-color: #000000;
           color: white;
           padding: 3rem 0;
         }
@@ -19,15 +19,23 @@ class CustomFooter extends HTMLElement {
           gap: 2rem;
         }
         
+        /* --- ESTILO DO LOGO ATUALIZADO --- */
         .footer-logo {
-          font-family: 'Playfair Display', serif;
-          font-size: 1.5rem;
-          font-weight: 600;
-          color: #ffffffff;
+          font-family: 'Playfair Display', serif; /* Mesma fonte da Navbar */
+          font-size: 1.8rem;
+          font-weight: 700; /* Negrito igual da Navbar */
+          color: #ffffff; /* Branco para contrastar com o fundo preto */
           margin-bottom: 1rem;
           display: inline-block;
-          text-decoration: none; /*pra remover o underline da logoo no footer*/
+          text-decoration: none;
+          letter-spacing: -0.5px;
         }
+
+        .footer-logo span {
+          color: #f43f5e; /* Rose 500 (Mesma cor da Navbar) */
+          font-style: italic; /* Itálico igual da Navbar */
+        }
+        /* ---------------------------------- */
         
         .footer-description {
           color: #bbb;
@@ -53,17 +61,15 @@ class CustomFooter extends HTMLElement {
         }
         
         .social-link:hover {
-          background-color: #9f1239;
+          background-color: #f43f5e; /* Atualizei para o Rose da marca */
           transform: translateY(-3px);
         }
 
-        /* Cor do Instagram (Magenta/Gradiente) */
         .social-link.instagram {
           background-color: #E4405F; 
           color: white;
         }
 
-        /* Cor do WhatsApp (Verde oficial) */
         .social-link.whatsapp {
           background-color: #25D366;
           color: white;
@@ -83,7 +89,7 @@ class CustomFooter extends HTMLElement {
           left: 0;
           width: 40px;
           height: 2px;
-          background-color: #9f1239;
+          background-color: #f43f5e; /* Atualizei para o Rose da marca */
         }
         
         .footer-links {
@@ -99,7 +105,7 @@ class CustomFooter extends HTMLElement {
         }
         
         .footer-link:hover {
-          color: #9f1239;
+          color: #f43f5e; /* Atualizei para o Rose da marca */
         }
         
         .contact-info {
@@ -133,7 +139,10 @@ class CustomFooter extends HTMLElement {
       
       <div class="footer-container">
         <div>
-          <a href="/" class="footer-logo">Alu Beauty</a>
+            <a href="/" class="logo flex items-center gap-2">
+                <img src="/assets/img/rosewhite-icon.svg" alt="Alu Beauty" class="h-9 w-9">
+            </a>
+          
           <p class="footer-description">
             Sua clínica de estética premium, oferecendo tratamentos personalizados para realçar sua beleza natural.
           </p>
@@ -141,39 +150,29 @@ class CustomFooter extends HTMLElement {
             <a href="https://www.instagram.com/alu_skinbeauty/" class="social-link instagram">
               <i data-feather="instagram"></i>
             </a>
-            <a href="https://wa.me/553195524994"" class="social-link whatsapp">
+            <a href="https://wa.me/5531973261635" class="social-link whatsapp">
               <i data-feather="message-circle"></i>
             </a>
           </div>
         </div>
-        
         <div>
           <h3 class="footer-title">Links Rápidos</h3>
           <div class="footer-links">
-            <a href="/" class="footer-link">Início</a>
-            <a href="/servicos" class="footer-link">Serviços</a>
+            <a href="/index.html" class="footer-link">Início</a>
+            <a href="/pages/servicos.html" class="footer-link">Serviços</a>
             <a href="/pages/sobre.html" class="footer-link">Sobre</a>
             <a href="/pages/agendamento.html" class="footer-link">Agendamento</a>
           </div>
         </div>
         
-        <div>
-          <h3 class="footer-title">Serviços</h3>
-          <div class="footer-links">
-            <a href="/servicos/limpeza-de-pele" class="footer-link">Limpeza de Pele</a>
-            <a href="/servicos/drenagem-linfatica" class="footer-link">Drenagem Linfática</a>
-            <a href="/servicos/design-sobrancelhas" class="footer-link">Design de Sobrancelhas</a>
-            <a href="/servicos/depilacao" class="footer-link">Depilação</a>
-            <a href="/servicos/tratamentos-faciais" class="footer-link">Tratamentos Faciais</a>
-          </div>
-        </div>
         
         <div>
           <h3 class="footer-title">Contato</h3>
           <div class="contact-info">
             <div class="contact-item">
               <i data-feather="map-pin"></i>
-              <span>Rua José dos Reis, 464 - Canaã</span>
+              <span>R. José dos Reis - Canaã -
+              Ibirité - MG</span>
             </div>
             <div class="contact-item">
               <i data-feather="phone"></i>
@@ -200,9 +199,11 @@ class CustomFooter extends HTMLElement {
     const icons = this.shadowRoot.querySelectorAll('[data-feather]');
     icons.forEach(icon => {
       const name = icon.getAttribute('data-feather');
-      icon.outerHTML = feather.icons[name].toSvg({
-        class: 'feather-icon' 
-      });
+      if (feather && feather.icons[name]) {
+        icon.outerHTML = feather.icons[name].toSvg({
+          class: 'feather-icon' 
+        });
+      }
     });
   }
 }

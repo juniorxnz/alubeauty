@@ -1,121 +1,254 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!doctype html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sobre | AluBeauty</title>
-    <link rel="stylesheet" href="style.css">
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#FF85A2',
-                        secondary: '#A78BFA',
-                    }
-                }
-            }
-        }
-    </script>
-</head>
-<body class="bg-gray-50">
-    <custom-navbar></custom-navbar>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
     
-    <main class="max-w-6xl mx-auto px-4 py-12">
-        <section class="flex flex-col lg:flex-row gap-12 items-center mb-16">
-            <div class="lg:w-1/2">
-                <img src="/assets/img/al2.jpeg" alt="Ana Luisa" class="rounded-lg shadow-xl w-full h-auto object-cover">
-            </div>
-            <div class="lg:w-1/2">
-                <h1 class="text-4xl font-bold text-primary mb-6">Ana Luisa</h1>
-                <p class="text-lg text-gray-700 mb-6">
-                    Olá! Sou Ana Luisa, fundadora da AluBeauty. Minha paixão pela estética começou cedo, quando percebi o poder transformador que os cuidados com a pele podem ter na autoestima e bem-estar das pessoas.
-                </p>
-                <div class="flex items-center gap-2 mb-4">
-                    <i data-feather="award" class="text-secondary"></i>
-                    <span class="font-medium">Formada em Estética e Cosmetologia</span>
-                </div>
-                <div class="flex items-center gap-2 mb-4">
-                    <i data-feather="heart" class="text-secondary"></i>
-                    <span class="font-medium">Atualização constante em técnicas e tendências do mercado estético</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <i data-feather="star" class="text-secondary"></i>
-                    <span class="font-medium">Especializada em tratamentos faciais personalizados</span>
-                </div>
-            </div>
-        </section>
+    <link rel="icon" type="image/svg+xml" href="/assets/img/alu-icon.png"> 
 
-        <section class="mb-16">
-            <h2 class="text-3xl font-bold text-primary mb-8 text-center">Minha Jornada</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4">
-                        <i data-feather="book" class="text-primary"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Formação</h3>
-                    <p class="text-gray-600">Graduada em Estética e Cosmetologia pela Instituição Unicesumar, com experiência em dermatofuncional e cosmetologia avançada.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4">
-                        <i data-feather="briefcase" class="text-primary"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Experiência</h3>
-                    <p class="text-gray-600">Atuei em clínicas de referência antes de fundar a AluBeauty, adquirindo conhecimento prático em protocolos de tratamento.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4">
-                        <i data-feather="target" class="text-primary"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Missão</h3>
-                    <p class="text-gray-600">Oferecer tratamentos personalizados que valorizem a beleza natural de cada cliente, promovendo autoestima e bem-estar.</p>
-                </div>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              poppins: ["Poppins", "sans-serif"],
+              playfair: ["Playfair Display", "serif"],
+            },
+            colors: {
+              // Usando a paleta Rose para alinhar com a Home
+              primary: "#f43f5e", // rose-500
+              secondary: "#881337", // rose-900
+            },
+          },
+        },
+      };
+    </script>
+
+    <script src="/components/navbar.js"></script>
+    <script src="/components/footer.js"></script>
+    <script src="/script.js"></script>
+  </head>
+  <body class="font-poppins bg-gray-50 text-gray-700">
+    <custom-navbar></custom-navbar>
+
+    <main class="max-w-6xl mx-auto px-6 pt-24 pb-20">
+      <section class="flex flex-col lg:flex-row gap-16 items-center mb-24">
+        <div class="lg:w-1/2 relative max-w-sm mx-auto">
+        <div
+            class="absolute inset-0 bg-rose-200 rounded-2xl transform rotate-3 scale-105 opacity-100"
+        ></div>
+
+        <img
+            src="/assets/img/al1cut.jpeg"
+            alt="Ana Luisa"
+            class="relative rounded-2xl shadow-xl w-full h-auto object-cover border-4 border-white"
+        />
+        </div>
+
+
+        <div class="lg:w-1/2">
+          <span
+            class="text-rose-500 font-semibold uppercase tracking-widest text-sm"
+            >Fundadora</span
+          >
+          <h1 class="text-5xl font-bold text-gray-900 mb-6 mt-2">Ana Luisa</h1>
+
+          <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+            Olá! Sou Ana Luisa, fundadora da AluBeauty. Minha paixão pela
+            estética começou cedo, quando percebi o poder transformador que os
+            cuidados com a pele podem ter na autoestima e bem-estar das pessoas.
+          </p>
+
+          <div class="space-y-4">
+            <div
+              class="flex items-center gap-4 p-4 bg-white rounded-lg shadow-sm border border-rose-50"
+            >
+              <div class="bg-rose-100 p-2 rounded-full">
+                <i data-feather="award" class="text-rose-500 w-5 h-5"></i>
+              </div>
+              <span class="font-medium text-gray-800"
+                >Formada em Estética e Cosmetologia</span
+              >
             </div>
-        </section>
 
-        <section class="bg-gradient-to-r from-primary to-secondary p-8 rounded-lg text-white mb-16">
-            <h2 class="text-3xl font-bold mb-6">Por que escolher a AluBeauty?</h2>
-            <ul class="space-y-4">
-                <li class="flex items-start gap-3">
-                    <i data-feather="check-circle" class="flex-shrink-0"></i>
-                    <span>Protocolos personalizados baseados em estudos científicos</span>
-                </li>
-                <li class="flex items-start gap-3">
-                    <i data-feather="check-circle" class="flex-shrink-0"></i>
-                    <span>Produtos de alta performance e qualidade</span>
-                </li>
-                <li class="flex items-start gap-3">
-                    <i data-feather="check-circle" class="flex-shrink-0"></i>
-                    <span>Ambiente acolhedor e exclusivo</span>
-                </li>
-                <li class="flex items-start gap-3">
-                    <i data-feather="check-circle" class="flex-shrink-0"></i>
-                    <span>Compromisso com resultados visíveis e duradouros</span>
-                </li>
-            </ul>
-        </section>
+            <div
+              class="flex items-center gap-4 p-4 bg-white rounded-lg shadow-sm border border-rose-50"
+            >
+              <div class="bg-rose-100 p-2 rounded-full">
+                <i data-feather="heart" class="text-rose-500 w-5 h-5"></i>
+              </div>
+              <span class="font-medium text-gray-800"
+                >Atualização constante em tendências</span
+              >
+            </div>
 
-        <section class="text-center">
-            <h2 class="text-3xl font-bold text-primary mb-6">Meu Compromisso</h2>
-            <p class="text-lg text-gray-700 max-w-3xl mx-auto">
-                "Acredito que cada pessoa é única e merece um tratamento que respeite suas particularidades. Minha abordagem combina técnica, ciência e sensibilidade para oferecer a melhor experiência em estética."
+            <div
+              class="flex items-center gap-4 p-4 bg-white rounded-lg shadow-sm border border-rose-50"
+            >
+              <div class="bg-rose-100 p-2 rounded-full">
+                <i data-feather="star" class="text-rose-500 w-5 h-5"></i>
+              </div>
+              <span class="font-medium text-gray-800"
+                >Especializada em tratamentos faciais</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-24">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">Minha Jornada</h2>
+          <div class="w-20 h-1 bg-rose-500 mx-auto rounded-full"></div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div
+            class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group"
+          >
+            <div
+              class="bg-rose-50 w-16 h-16 rounded-full flex items-center justify-center mb-6 group-hover:bg-rose-500 transition-colors duration-300"
+            >
+              <i
+                data-feather="book"
+                class="text-rose-500 w-8 h-8 group-hover:text-white transition-colors"
+              ></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-3">Formação</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Graduada em Estética e Cosmetologia pela Instituição Unicesumar,
+              com experiência em dermatofuncional e cosmetologia avançada.
             </p>
-            <div class="mt-8">
-                <a href="agendamento.html" class="bg-primary hover:bg-primary-600 text-white font-medium py-3 px-8 rounded-full inline-flex items-center gap-2 transition-colors">
-                    Agende sua avaliação <i data-feather="calendar"></i>
-                </a>
+          </div>
+
+          <div
+            class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group transform md:-translate-y-4"
+          >
+            <div
+              class="bg-rose-50 w-16 h-16 rounded-full flex items-center justify-center mb-6 group-hover:bg-rose-500 transition-colors duration-300"
+            >
+              <i
+                data-feather="briefcase"
+                class="text-rose-500 w-8 h-8 group-hover:text-white transition-colors"
+              ></i>
             </div>
-        </section>
+            <h3 class="text-2xl font-bold text-gray-800 mb-3">Experiência</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Atuei em clínicas de referência antes de fundar a AluBeauty,
+              adquirindo conhecimento prático em protocolos de tratamento.
+            </p>
+          </div>
+
+          <div
+            class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group"
+          >
+            <div
+              class="bg-rose-50 w-16 h-16 rounded-full flex items-center justify-center mb-6 group-hover:bg-rose-500 transition-colors duration-300"
+            >
+              <i
+                data-feather="target"
+                class="text-rose-500 w-8 h-8 group-hover:text-white transition-colors"
+              ></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-3">Missão</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Oferecer tratamentos personalizados que valorizem a beleza natural
+              de cada cliente, promovendo autoestima e bem-estar.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="bg-gradient-to-r from-rose-400 to-rose-600 p-10 md:p-16 rounded-3xl text-white mb-24 shadow-2xl relative overflow-hidden"
+      >
+        <div
+          class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-white opacity-10 rounded-full blur-3xl"
+        ></div>
+
+        <div
+          class="relative z-10 flex flex-col md:flex-row gap-12 items-center"
+        >
+          <div class="md:w-1/3">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 leading-tight">
+              Por que escolher a AluBeauty?
+            </h2>
+            <p class="text-rose-100 opacity-90">
+              Diferenciais pensados para o seu conforto e segurança.
+            </p>
+          </div>
+
+          <div class="md:w-2/3 w-full">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div
+                class="flex items-start gap-4 bg-white/10 p-4 rounded-xl backdrop-blur-sm hover:bg-white/20 transition-colors"
+              >
+                <i data-feather="check-circle" class="flex-shrink-0 mt-1"></i>
+                <span class="font-medium"
+                  >Protocolos baseados em estudos científicos</span
+                >
+              </div>
+              <div
+                class="flex items-start gap-4 bg-white/10 p-4 rounded-xl backdrop-blur-sm hover:bg-white/20 transition-colors"
+              >
+                <i data-feather="check-circle" class="flex-shrink-0 mt-1"></i>
+                <span class="font-medium"
+                  >Produtos de alta performance e qualidade</span
+                >
+              </div>
+              <div
+                class="flex items-start gap-4 bg-white/10 p-4 rounded-xl backdrop-blur-sm hover:bg-white/20 transition-colors"
+              >
+                <i data-feather="check-circle" class="flex-shrink-0 mt-1"></i>
+                <span class="font-medium">Ambiente acolhedor e exclusivo</span>
+              </div>
+              <div
+                class="flex items-start gap-4 bg-white/10 p-4 rounded-xl backdrop-blur-sm hover:bg-white/20 transition-colors"
+              >
+                <i data-feather="check-circle" class="flex-shrink-0 mt-1"></i>
+                <span class="font-medium"
+                  >Compromisso com resultados duradouros</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="text-center max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-8">Meu Compromisso</h2>
+        <div class="relative">
+          <i
+            data-feather="message-circle"
+            class="absolute -top-6 -left-6 text-rose-100 w-16 h-16 opacity-50"
+          ></i>
+          <p class="text-xl text-gray-600 italic mb-10 relative z-10">
+            "Acredito que cada pessoa é única e merece um tratamento que
+            respeite suas particularidades. Minha abordagem combina técnica,
+            ciência e sensibilidade para oferecer a melhor experiência em
+            estética."
+          </p>
+        </div>
+
+        <a
+          href="agendamento.html"
+          class="inline-flex items-center gap-2 bg-rose-500 hover:bg-rose-600 text-white font-medium py-4 px-10 rounded-full shadow-lg hover:shadow-rose-200 hover:-translate-y-1 transition-all duration-300"
+        >
+          Agende sua avaliação <i data-feather="calendar" class="w-5 h-5"></i>
+        </a>
+      </section>
     </main>
 
     <custom-footer></custom-footer>
-
-    <script src="/components/footer.js"></script>
-    <script src="/components/navbar.js"></script>
-    <script src="script.js"></script>
-    <script>feather.replace();</script>
-</body>
+  </body>
 </html>

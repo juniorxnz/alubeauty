@@ -1,6 +1,15 @@
 class CustomNavbar extends HTMLElement {
-    connectedCallback() {
+    constructor() {
+        super();
         this.attachShadow({ mode: 'open' });
+    }
+
+    connectedCallback() {
+        this.render();
+        this.setupEvents();
+    }
+
+    render() {
         this.shadowRoot.innerHTML = `
             <style>
                 :host {
@@ -10,123 +19,197 @@ class CustomNavbar extends HTMLElement {
                     left: 0;
                     right: 0;
                     z-index: 1000;
-                    background-color: rgba(255, 255, 255, 0.95);
-                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                }
+
+                /* Container principal com efeito Glassmorphism */
+                .navbar {
+                    background-color: rgba(255, 255, 255, 0.85); /* Fundo translúcido */
+                    backdrop-filter: blur(12px); /* O desfoque mágico */
+                    -webkit-backdrop-filter: blur(12px); /* Safari */
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+                    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
                     transition: all 0.3s ease;
                 }
-                
+
                 .navbar-container {
                     max-width: 1200px;
                     margin: 0 auto;
-                    padding: 1rem 2rem;
+                    padding: 0 2rem;
+                    height: 80px; /* Altura fixa para alinhar tudo */
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
                 }
-                
+
+                /* LOGO */
                 .logo {
-                    font-family: serif;
-                    font-size: 1.5rem;
-                    font-weight: bold;
-                    color: #9f1239;
+                    font-family: 'Playfair Display', serif; /* Fonte serifada para luxo */
+                    font-size: 1.8rem;
+                    font-weight: 700;
+                    color: #333;
                     text-decoration: none;
+                    letter-spacing: -0.5px;
                 }
                 
+                .logo span {
+                    color: #f43f5e; /* Dourado da marca */
+                    font-style: italic;
+                }
+
+                /* LINKS (Desktop) */
                 .nav-links {
                     display: flex;
-                    gap: 2rem;
+                    gap: 2.5rem;
+                    align-items: center;
                 }
-                
+
                 .nav-link {
-                    color: #4c0519;
+                    color: #555;
                     text-decoration: none;
                     font-weight: 500;
+                    font-size: 0.95rem;
                     position: relative;
                     transition: color 0.3s ease;
                 }
-                
-                .nav-link:hover {
-                    color: #9f1239;
+
+                .nav-link:not(.btn-cta):hover {
+                    color: #f43f5e;
                 }
-                
-                .nav-link::after {
+
+                /* Efeito de sublinhado animado */
+                .nav-link:not(.btn-cta)::after {
                     content: '';
                     position: absolute;
                     bottom: -5px;
                     left: 0;
                     width: 0;
                     height: 2px;
-                    background-color: #9f1239;
+                    background-color: #f43f5d;
                     transition: width 0.3s ease;
                 }
-                
-                .nav-link:hover::after {
+
+                .nav-link:not(.btn-cta):hover::after {
                     width: 100%;
                 }
-                
+
+                /* BOTÃO DE DESTAQUE (CTA) */
+                .btn-cta {
+                    background-color: #f43f5e;
+                    color: white;
+                    padding: 0.7rem 1.8rem;
+                    border-radius: 50px;
+                    font-weight: 600;
+                    transition: transform 0.2s, background-color 0.3s;
+                    box-shadow: 0 4px 15px rgba(225, 29, 72, 0.3);
+                }
+
+                .btn-cta:hover {
+                    background-color: #e11d48;
+                    transform: translateY(-2px);
+                    color: white;
+                }
+
+                /* BOTÃO MOBILE (Hambúrguer) */
                 .mobile-menu-btn {
                     display: none;
                     background: none;
                     border: none;
-                    color: #4c0519;
                     cursor: pointer;
+                    padding: 0.5rem;
                 }
                 
+                /* SVG do ícone */
+                .mobile-menu-btn svg {
+                    width: 28px;
+                    height: 28px;
+                    stroke: #333;
+                    transition: stroke 0.3s;
+                }
+
+                /* RESPONSIVIDADE */
                 @media (max-width: 768px) {
                     .nav-links {
-                        position: fixed;
-                        top: 70px;
+                        position: absolute;
+                        top: 80px; /* Logo abaixo da navbar */
                         left: 0;
                         right: 0;
                         background-color: white;
                         flex-direction: column;
                         align-items: center;
                         padding: 2rem 0;
-                        gap: 1.5rem;
-                        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-                        transform: translateY(-150%);
-                        transition: transform 0.1s ease;
+                        gap: 2rem;
+                        border-top: 1px solid rgba(0,0,0,0.05);
+                        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+                        
+                        /* Animação de entrada */
+                        opacity: 0;
+                        transform: translateY(-20px);
+                        pointer-events: none;
+                        transition: all 0.3s ease-in-out;
                     }
                     
                     .nav-links.active {
+                        opacity: 1;
                         transform: translateY(0);
+                        pointer-events: auto;
                     }
-                    
+
                     .mobile-menu-btn {
                         display: block;
+                    }
+                    
+                    .btn-cta {
+                        width: 80%; /* Botão largo no mobile */
+                        text-align: center;
                     }
                 }
             </style>
             
-            <div class="navbar-container">
-                <a href="/" class="logo"></a>
-                
-                <button class="mobile-menu-btn">
-                    <i data-feather="menu"></i>
-                </button>
-                
-                <div class="nav-links">
-                    <a href="/index.html" class="nav-link">Início</a>
-                    <a href="/pages/sobre.html" class="nav-link">Sobre</a>
-                    <a href="/pages/servicos.html" class="nav-link">Serviços</a>
-                    <a href="/pages/agendamento.html" class="nav-link">Agendar Atendimento</a>
+            <header class="navbar">
+                <div class="navbar-container">
+                <a href="/" class="logo flex items-center gap-2">
+                    <img src="/assets/img/beautyblack-icon.svg" alt="Alu Beauty" class="h-9 w-9">
+                </a>
+
+                    
+                    <button class="mobile-menu-btn" aria-label="Abrir menu">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                    
+                    <nav class="nav-links">
+                        <a href="/index.html" class="nav-link">Início</a>
+                        <a href="/pages/sobre.html" class="nav-link">Sobre</a>
+                        <a href="/pages/servicos.html" class="nav-link">Serviços</a>
+                        <a href="/pages/agendamento.html" class="nav-link btn-cta">Agendar Horário</a>
+                    </nav>
                 </div>
-            </div>
+            </header>
         `;
-        
-        // Mobile menu toggle
+    }
+
+    setupEvents() {
         const mobileBtn = this.shadowRoot.querySelector('.mobile-menu-btn');
         const navLinks = this.shadowRoot.querySelector('.nav-links');
-        
+        const links = this.shadowRoot.querySelectorAll('.nav-link');
+
+        // toggla o menu
         mobileBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-            feather.replace();
+            
+            // visual effect simples no ícone (troca cor quando ativo)
+            const isOpen = navLinks.classList.contains('active');
+            mobileBtn.querySelector('svg').style.stroke = isOpen ? '#f43f5e' : '#333';
         });
-        
-        // Close menu when clicking a link
-        this.shadowRoot.querySelectorAll('.nav-link').forEach(link => {
+
+        // menu fecha quando clica em um link
+        links.forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
+                mobileBtn.querySelector('svg').style.stroke = '#333';
             });
         });
     }
