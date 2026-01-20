@@ -2,27 +2,28 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. Inicializa Ícones
+    // 1. init nos icons
     if (typeof feather !== 'undefined') {
         feather.replace();
     }
 
-    // 2. Smooth Scroll para links internos
+    // 2. mecanismo de smooth scroll p links internos
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
-            // Verifica se é apenas um # vazio
+            // ve se é apenas um # vazio
             if(targetId === '#') return;
             
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
-                targetElement.scrollIntoView({ behavior: 'smooth' });
+                targetElement.scrollIntoView({ behavior: 'smooth' }); //
             }
         });
     });
 
-    // 3. ANIMAÇÃO DE SCROLL (Intersection Observer)
+    // NÃO MEXER - NÃO MEXER
+    // 3. ANIMAÇÃO DE SCROLL (intersection observer)
     const observerOptions = {
         threshold: 0.1,
         rootMargin: "0px 0px -50px 0px"
@@ -38,8 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    // Seleciona elementos para animar em QUALQUER página
-    // Excluímos a navbar e footer para não ficarem piscando
+    // seleciona elementos p animar em QUALQUER página
+    // navbar e footer removidas do mecanismo pra não ficarem piscando
     const elementosAnimaveis = document.querySelectorAll('section h1, section h2, section h3, section p, section .bg-white, section img, .animate-on-scroll');
     
     elementosAnimaveis.forEach(el => {
@@ -47,7 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    // 4. Lógica do Formulário (Só executa se existir o form na página)
+    //deadcode no momento - mecanismo será implementado somente no futuro
+    // 4. logica do Formulário (Só executa se existir o form na página)
     const form = document.getElementById('formAgendamento');
     if (form) {
         // Data mínima

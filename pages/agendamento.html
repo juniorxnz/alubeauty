@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Agendamento Online - Alu Beauty</title>
 
-    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -15,7 +15,7 @@
       rel="stylesheet"
     />
 
-    <link rel="icon" type="image/svg+xml" href="/assets/img/alu-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="../assets/img/alu-icon.png" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.4.3/imask.min.js"></script>
 
@@ -48,6 +48,7 @@
       .step-content.active {
         display: block;
       }
+      /*animacao fadein*/
       @keyframes fadeIn {
         from {
           opacity: 0;
@@ -59,6 +60,7 @@
         }
       }
     </style>
+
   </head>
   <body class="font-poppins bg-rose-50 text-rose-900 overflow-x-hidden">
     <custom-navbar></custom-navbar>
@@ -490,7 +492,7 @@
       // NÃO MEXER
       // NÃO MEXER
       // --- DADOS DOS SERVIÇOS ---
-      //array pra logica do mecanismo de pesquisa
+      //array de obj pra logica do mecanismo de pesquisa
       const services = [
         // Depilação
         {
@@ -624,7 +626,7 @@
         setupDateInput();
         setupMask();
 
-        // Filtros
+        // filtros
         document
           .getElementById("search-service")
           .addEventListener("input", filterServices);
@@ -632,7 +634,7 @@
           .getElementById("category-filter")
           .addEventListener("change", filterServices);
 
-        // Inputs de dados
+        // inputs de dados
         document
           .getElementById("client-name")
           .addEventListener("input", validateStep3);
@@ -655,7 +657,7 @@
           .forEach((el) => el.classList.remove("active"));
         document.getElementById(`step-${step}`).classList.add("active");
 
-        // Atualiza barra de progresso
+        // atualiza barra de progresso
         const progress = { 1: "25%", 2: "50%", 3: "75%", 4: "100%" };
         document.getElementById("progress-bar").style.width = progress[step];
 
@@ -752,7 +754,7 @@
         const container = document.getElementById("time-slots-container");
         container.innerHTML = "";
         appointment.date = dateString;
-        appointment.time = null; // Reset time
+        appointment.time = null; // reseta time
         document.getElementById("btn-next-2").disabled = true;
         document
           .getElementById("btn-next-2")
@@ -762,7 +764,7 @@
           .classList.remove("bg-rose-500", "hover:bg-rose-600");
 
         const date = new Date(dateString + "T00:00:00"); // força o local time
-        const dayOfWeek = date.getDay(); // 0 = doming
+        const dayOfWeek = date.getDay(); // 0 = domingo
 
         if (dayOfWeek === 0) {
           container.innerHTML =
@@ -770,9 +772,12 @@
           return;
         }
 
-        // Horários ficticios (Seg-Sex 9-18, Sab 9-13)
+        // horarios ficticios (Seg-Sex 9-18, Sab 9-13)
         let startHour = 9;
-        let endHour = dayOfWeek === 6 ? 13 : 18;
+        let endHour = 18;
+        if (dayOfWeek === 6) {
+          endHour = 13;
+        }
 
         for (let h = startHour; h < endHour; h++) {
           createSlot(`${h}:00`, container);
@@ -786,7 +791,7 @@
           "time-slot border border-gray-300 rounded-md py-2 px-1 text-sm font-medium hover:border-rose-400 transition";
         btn.innerText = time;
 
-        // dar block em horários passados se for hoje
+        // dar block em horarios passados se for hoje
         const now = new Date();
         const selectedDate = new Date(appointment.date + "T00:00:00");
         const [h, m] = time.split(":");
@@ -808,7 +813,7 @@
           btn.classList.add("selected");
           appointment.time = time;
 
-          // habilita next button
+          // habilita o next button
           const nextBtn = document.getElementById("btn-next-2");
           nextBtn.disabled = false;
           nextBtn.classList.remove("bg-gray-300", "cursor-not-allowed");
@@ -852,7 +857,7 @@
         document.getElementById("summary-duration").innerText =
           appointment.service.duration;
 
-        // Formatar data para PT-BR
+        // formata data p PT-BR
         const dateObj = new Date(appointment.date + "T00:00:00");
         document.getElementById("summary-date").innerText =
           dateObj.toLocaleDateString("pt-BR");
@@ -861,7 +866,7 @@
         document.getElementById("summary-name").innerText =
           appointment.clientName;
 
-        // Gerar Link WhatsApp
+        // gera link do wpp
         const msg =
           `Olá, Ana! %0A%0A` +
           `Gostaria de confirmar o seguinte agendamento:%0A` +
