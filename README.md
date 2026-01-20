@@ -1,6 +1,6 @@
 # Alu Beauty — Estética & Bem-Estar ✨
 
-Site institucional responsivo (mobile-first) para a clínica **Alu Beauty**, com foco em apresentação de serviços, depoimentos e chamada para agendamento via WhatsApp.
+Site institucional responsivo para a clínica **Alu Beauty**, com foco em apresentação de serviços, depoimentos e chamada para agendamento via WhatsApp.
 
 > Projeto feito com HTML + CSS + Tailwind (CDN) e componentes reutilizáveis em JavaScript (Web Components).
 
@@ -12,6 +12,7 @@ O projeto contém:
 - **Hero** com CTA de agendamento e link para serviços
 - **Seção de Serviços** (cards)
 - **Seção Sobre**
+- **Seção com mecanismo para agendamento**
 - **Depoimentos**
 - **Chamada para ação** com botão de agendamento e link direto para WhatsApp
 - **Navbar e Footer como Web Components** (custom elements)
@@ -30,22 +31,21 @@ O projeto contém:
 ---
 
 ## 📁 Estrutura do projeto
-
+.
 ├── index.html
 ├── style.css
 ├── script.js
 ├── assets/
-│ └── img/
-    │ ├── alu-icon.png
-    │ └── al.jpeg
-  ├── components/
-    │ ├── navbar.js
-    │ ├── footer.js
+│   └── img/
+│       ├── alu-icon.png
+│       └── al.jpeg
+├── components/
+│   ├── navbar.js
+│   └── footer.js
 └── pages/
-  ├── servicos.html
-  ├── sobre.html
-  └── agendamento.html
-
+    ├── servicos.html
+    ├── sobre.html
+    └── agendamento.html
 
 ---
 
