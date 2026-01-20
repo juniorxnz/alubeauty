@@ -204,7 +204,7 @@ class CustomFooter extends HTMLElement {
             </div>
             <div class="contact-item">
               <i data-feather="clock"></i>
-              <span>Seg-Sex: 9h-19h | Sáb: 9h-14h</span>
+              <span>Seg-Sex: 9h-18h | Sáb: 9h-14h</span>
             </div>
           </div>
         </div>

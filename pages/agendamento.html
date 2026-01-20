@@ -19,9 +19,9 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.4.3/imask.min.js"></script>
 
-    <script src="/components/footer.js"></script>
-    <script src="/components/navbar.js"></script>
-    <script src="/script.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../components/navbar.js"></script>
+    <script src="../script.js"></script>
 
     <style>
       /* estilos específicos para seleção */
@@ -60,7 +60,6 @@
         }
       }
     </style>
-
   </head>
   <body class="font-poppins bg-rose-50 text-rose-900 overflow-x-hidden">
     <custom-navbar></custom-navbar>
@@ -775,6 +774,7 @@
         // horarios ficticios (Seg-Sex 9-18, Sab 9-13)
         let startHour = 9;
         let endHour = 18;
+        //limita o horario do dia de sabado
         if (dayOfWeek === 6) {
           endHour = 13;
         }
