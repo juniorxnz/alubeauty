@@ -31,14 +31,16 @@ O projeto contém:
 ---
 
 ## 📁 Estrutura do projeto
+```
 .
 ├── index.html
-├── style.css
 ├── script.js
 ├── assets/
 │   └── img/
 │       ├── alu-icon.png
 │       └── al.jpeg
+│   └── css/
+│       ├── style.css
 ├── components/
 │   ├── navbar.js
 │   └── footer.js
@@ -46,7 +48,7 @@ O projeto contém:
     ├── servicos.html
     ├── sobre.html
     └── agendamento.html
-
+```
 ---
 
 ## ▶️ Como rodar o projeto
