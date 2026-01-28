@@ -30,6 +30,8 @@ O projeto contém:
 
 ---
 
+O site também foi hospedado via GITHUB PAGES no endereço: juniorxnz.github.io/alubeauty
+
 ## 📁 Estrutura do projeto
 ```
 .
@@ -70,4 +72,4 @@ Na pasta do projeto:
 
 ```bash
 python -m http.server 5500
-
+```
