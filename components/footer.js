@@ -1,7 +1,7 @@
 class CustomFooter extends HTMLElement {
   connectedCallback() {
     this.attachShadow({ mode: 'open' });
-    //quando o rodape entra na pagina esse metodo roda automaticamente assim que custor-footer aparece na tela
+    //quando o rodape entra na pagina esse metodo roda automaticamente assim que custom-footer aparece na tela
 
     // detecta se a page atual ta dentro de /pages/
     const inPages = window.location.pathname.includes('/pages/');
@@ -164,14 +164,14 @@ class CustomFooter extends HTMLElement {
           </a>
           
           <p class="footer-description">
-            Sua clínica de estética premium, oferecendo tratamentos personalizados para realçar sua beleza natural.
+            Oferecemos tratamentos personalizados para realçar sua beleza natural.
           </p>
 
           <div class="social-links">
             <a href="https://www.instagram.com/alu_skinbeauty/" class="social-link instagram" aria-label="Instagram">
               <i data-feather="instagram"></i>
             </a>
-            <a href="https://wa.me/5531973261635" class="social-link whatsapp" aria-label="WhatsApp">
+            <a href="https://wa.me/5531999999999" class="social-link whatsapp" aria-label="WhatsApp">
               <i data-feather="message-circle"></i>
             </a>
           </div>
@@ -192,11 +192,11 @@ class CustomFooter extends HTMLElement {
           <div class="contact-info">
             <div class="contact-item">
               <i data-feather="map-pin"></i>
-              <span>R. José dos Reis - Canaã - Ibirité - MG</span>
+              <span>Rua das Flores, 764 - Floresta - Ibirité - MG</span>
             </div>
             <div class="contact-item">
               <i data-feather="phone"></i>
-              <span>(31) 9552-4994</span>
+              <span>(31) 9 9999-9999</span>
             </div>
             <div class="contact-item">
               <i data-feather="mail"></i>

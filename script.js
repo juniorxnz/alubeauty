@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // NÃO MEXER - NÃO MEXER
     // 3. ANIMAÇÃO DE SCROLL (intersection observer)
     const observerOptions = {
         threshold: 0.1,
@@ -85,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 `*Horário Sugerido:* ${hora}%0A%0A` +
                 `Aguardo a confirmação!`;
 
-            const numeroWhatsApp = "553195524994"; 
+            const numeroWhatsApp = "5531999999999"; 
             const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
 
             window.open(linkWhatsApp, '_blank');
